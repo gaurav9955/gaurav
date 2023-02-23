@@ -40,10 +40,10 @@ class Product(models.Model):
     product_category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, related_name='category_products')
     product_cost_per_quantity = models.FloatField()
     product_gst = models.ForeignKey(GST, on_delete=models.CASCADE, related_name='gst_products')
-    product_cost_with_gst = models.FloatField()
+    product_cost_with_gst = models.FloatField(default=0)
     product_offer = models.ForeignKey(Offer, on_delete=models.CASCADE, related_name='offer_products')
     product_quantity = models.FloatField(default=0)
-    product_total_cost = models.FloatField()
+    product_total_cost = models.FloatField(default=0)
 
     def __str__(self):
         return f'{self.product_name}'

@@ -16,9 +16,9 @@ class Vendors(models.Model):
 
 class Order(models.Model):
     order_id = models.BigAutoField(primary_key=True)
-    order_number = models.BigAutoField(unique=True)
-    order_total_cost_without_gst = models.FloatField()
-    order_total_cost_with_gst = models.FloatField()
+    order_number = models.CharField(max_length=10 ,editable=False, unique=True)
+    order_total_cost_without_gst = models.FloatField(default=0)
+    order_total_cost_with_gst = models.FloatField(default=0)
     status = (
         ('Pending', 'Pending'),
         ('Delivered', 'Deliveried')
@@ -30,9 +30,9 @@ class Order(models.Model):
 
 class OrderProduct(models.Model):
     order_product_id = models.BigAutoField(primary_key=True)
-    #order_id = models.ForeignKey(Order, on_delete=models.CASCADE , related_name='product_in_ordert')
-    order_product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='order_list')
-    order_product_quantity = models.FloatField()
-    order_product_cost_per_quantity = models.FloatField()
-    order_product_total_cost = models.FloatField()
-    order_product_total_cost_with_gst = models.FloatField()
+    order = models.ForeignKey(Order, on_delete=models.CASCADE , related_name='product_in_order')
+    product_order = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='order_list')
+    order_product_quantity = models.FloatField(default=1)
+    order_product_cost_per_quantity = models.FloatField(default=0)
+    order_product_total_cost = models.FloatField(default=0)
+    order_product_total_cost_with_gst = models.FloatField(default=0)
