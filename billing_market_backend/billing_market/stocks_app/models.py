@@ -12,7 +12,7 @@ class ProductCategory(models.Model):
 class GST(models.Model):
     gst_id = models.BigAutoField(primary_key=True)
     hsn_code = models.CharField(max_length=8, unique=True)
-    cgst = models.IntegerField(default=0)
+    cgst = models.IntegerField(default=0) 
     sgst = models.IntegerField(default=0)
     igst = models.IntegerField(default=0)
     discription = models.TextField(blank=True)

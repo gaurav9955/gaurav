@@ -6,7 +6,7 @@ class VendorsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vendors
         fields = '__all__'
-    
+
 
     def validate_vendor_gst_number(self, value):
         # print(value, '============')
@@ -30,5 +30,5 @@ class VendorsSerializer(serializers.ModelSerializer):
         import re 
         if not re.match(pattern, value):
             raise serializers.ValidationError('GST Number is Not Valid')
-        return value
-        
+        return value    
+     
